@@ -1,0 +1,32 @@
+<%= form_with model: dish, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" do |form| %>
+  <% if dish.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(dish.errors.count, "error") %> prohibited this dish from being saved:</h2>
+
+      <ul>
+        <% dish.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-5">
+    <%= form.label :name, "Name", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="mb-5">
+    <%= form.label :price, "Price", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :price, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="mb-5">
+    <%= form.label :course, "Course", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.select :course, Dish.courses.map { |course, v| [Dish.human_attribute_name("course.#{course}"), course] } %>
+  </div>
+
+  <div class="flex items-center justify-between">
+    <%= form.submit class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  </div>
+<% end %>
