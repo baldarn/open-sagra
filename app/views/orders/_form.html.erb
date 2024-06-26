@@ -1,17 +1,28 @@
-<%= form_with(model: order) do |form| %>
-  <% if order.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-      <ul>
-        <% order.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= simple_form_for order do |f| %>
+  <%= f.input :customer_name, class: "input" %>
+  <%= f.input :date do %>
+    <%= f.datetime_field :date, include_seconds: false, class: "form-control" %>
+  <% end %>
+  <% if order.new_record? %>
+    <%= f.button :submit, 'Move on' %>
+  <% else %>
+    <div class="d-grid gap-2">
+      <%= link_to "New dish",
+            new_order_order_dish_path(@order),
+            data: { turbo_frame: dom_id(OrderDish.new) },
+            class: "btn btn-primary" %>
+    </div>
+    <%= turbo_frame_tag OrderDish.new %>
+    <%= turbo_frame_tag "order_dishes" do %>
+      <%= render @order.order_dishes, quote: @order %>
+    <% end %>
+    <div class="display-5 text-center">
+      <%= f.label :total, class: 'form-label' %>
+      <div class="string"><%= number_to_currency(order.total.to_f / 100) %></div>
+    </div>
+    <div class="col-auto text-center">
+      <%= link_to 'Print', new_order_path, onclick: 'window.print(); return false;', class: 'btn btn-lg btn-warning' %>
+      <%= link_to "Pay", '#', class: 'btn btn-lg btn-success' %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

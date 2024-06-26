@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= javascript_importmap_tags %>
+    <%# <meta name="turbo-refresh-method" content="morph"> %>
+    <%# <meta name="turbo-refresh-scroll" content="preserve"> %>
   </head>
-
-  <body>
-    <main class="container mx-auto mt-28 px-5">
-      <%= yield %>
-    </main>
-  </body>
+<%= content_tag :body, data: { action: action_name, controller: controller_name, path: request.path, controller: "toggle" } do %>
+    <%= render "header" %>
+    <%= render "flash" %>
+    
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <%= render "footer" %>
+  <% end %>
 </html>

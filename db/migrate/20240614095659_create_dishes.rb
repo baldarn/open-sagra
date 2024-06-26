@@ -5,7 +5,6 @@ class CreateDishes < ActiveRecord::Migration[7.1]
     create_table :dishes do |t|
       t.string :name
       t.integer :price
-
       t.integer :course, default: 0
 
       t.timestamps

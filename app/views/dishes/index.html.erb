@@ -1,14 +1,10 @@
-<p style="color: green"><%= notice %></p>
+<h1 class="display-4"><%= t('dishes.title') %></h1>
 
-<h1>Dishes</h1>
+<%= link_to t('dishes.new'), new_dish_path, class: "btn btn-primary" %>
 
-<div id="dishes">
+<div id="dishes" class="container is-fluid">
   <% @dishes.each do |dish| %>
     <%= render dish %>
-    <p>
-      <%= link_to "Show this dish", dish %>
-    </p>
   <% end %>
 </div>
 
-<%= link_to "New dish", new_dish_path %>

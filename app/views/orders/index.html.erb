@@ -1,14 +1,9 @@
-<p style="color: green"><%= notice %></p>
+<h1 class="display-4"><%= t('orders.title') %></h1>
 
-<h1>Orders</h1>
+<%= link_to t('orders.new'), new_order_path, class: 'btn btn-primary' %>
 
-<div id="orders">
+<div id="orders" class="container is-fluid">
   <% @orders.each do |order| %>
     <%= render order %>
-    <p>
-      <%= link_to "Show this order", order %>
-    </p>
   <% end %>
 </div>
-
-<%= link_to "New order", new_order_path %>

@@ -1,2 +1,17 @@
-<div id="<%= dom_id order %>">
+<div id="<%= dom_id order %>" class="row">
+  <div class="col">
+    customer name
+    <%= order.customer_name %>
+  </div>
+  <div class="col">
+    <%= number_to_currency(order.total.to_f / 100) %>
+  </div>
+  <div class="col">
+    <%= link_to edit_order_path(order) do %>
+      <%= icon_svg("edit", class: "icon icon-2x") %>
+    <% end %>
+    <%= link_to order, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'} do %>
+      <%= icon_svg("destroy", class: "icon icon-2x") %>
+    <% end %>
+  </div>
 </div>

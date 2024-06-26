@@ -36,10 +36,6 @@ en:
     created: Dish was successfully created.
     updated: Dish was successfully updated.
     destroyed: Dish was successfully destroyed.
-  shift:
-    created: Shift was successfully created.
-    updated: Shift was successfully updated.
-    destroyed: Shift was successfully destroyed.
   activerecord:
     attributes:
       dish/course:

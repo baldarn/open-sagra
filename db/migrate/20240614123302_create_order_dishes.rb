@@ -7,6 +7,8 @@ class CreateOrderDishes < ActiveRecord::Migration[7.1]
       t.belongs_to :dish
 
       t.integer :price
+      t.integer :quantity
+      t.string :notes
 
       t.timestamps
     end

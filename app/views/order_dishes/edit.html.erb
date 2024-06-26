@@ -1,0 +1,7 @@
+<%= turbo_frame_tag @order_dish do %>
+  <div class="card">
+    <div class="card-body">
+      <%= render "form", order: @order, order_dish: @order_dish %>
+    </div>
+  </div>
+<% end %>

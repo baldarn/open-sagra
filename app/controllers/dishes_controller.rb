@@ -1,65 +1,44 @@
 # frozen_string_literal: true
 
 class DishesController < ApplicationController
-  before_action :set_dish, only: %i[show edit update destroy]
+  before_action :set_dish, only: %i[edit update destroy]
 
-  # GET /dishes or /dishes.json
   def index
     @dishes = Dish.all
   end
 
-  # GET /dishes/1 or /dishes/1.json
-  def show; end
-
-  # GET /dishes/new
   def new
     @dish = Dish.new
   end
 
-  # GET /dishes/1/edit
   def edit; end
 
-  # POST /dishes or /dishes.json
   def create
     @dish = Dish.new(dish_params)
 
-    respond_to do |format|
-      if @dish.save
-        format.html { redirect_to dish_url(@dish), notice: I18n.t('dishes.created') }
-        format.json { render :show, status: :created, location: @dish }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @dish.errors, status: :unprocessable_entity }
-      end
+    if @dish.save
+      redirect_to dishes_url, flash: { success: I18n.t('dishes.created') }
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /dishes/1 or /dishes/1.json
   def update
-    respond_to do |format|
-      if @dish.update(dish_params)
-        format.html { redirect_to dish_url(@dish), notice: I18n.t('dishes.updated') }
-        format.json { render :show, status: :ok, location: @dish }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @dish.errors, status: :unprocessable_entity }
-      end
+    if @dish.update(dish_params)
+      redirect_to dishes_url, flash: { success: I18n.t('dishes.updated') }
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /dishes/1 or /dishes/1.json
   def destroy
     @dish.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to dishes_url, notice: I18n.t('dishes.destroyed') }
-      format.json { head :no_content }
-    end
+    redirect_to dishes_url, flash: { success: I18n.t('dishes.destroyed') }
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_dish
     @dish = Dish.find(params[:id])
   end

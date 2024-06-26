@@ -1,0 +1,5 @@
+<%= turbo_stream.update OrderDish.new, "" %>
+
+<%= turbo_stream.prepend "order_dishes" do %>
+  <%= render @order_dish, order: @order %>
+<% end %>

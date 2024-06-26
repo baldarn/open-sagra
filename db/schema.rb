@@ -23,6 +23,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_123302) do
     t.integer "order_id"
     t.integer "dish_id"
     t.integer "price"
+    t.integer "quantity"
+    t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dish_id"], name: "index_order_dishes_on_dish_id"
@@ -31,14 +33,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_123302) do
 
   create_table "orders", force: :cascade do |t|
     t.string "customer_name"
-    t.integer "shift_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["shift_id"], name: "index_orders_on_shift_id"
-  end
-
-  create_table "shifts", force: :cascade do |t|
-    t.date "date"
+    t.integer "status", default: 0
+    t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

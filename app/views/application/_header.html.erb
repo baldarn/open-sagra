@@ -1,0 +1,9 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <%= link_to "Open Sagra", root_path, class: "navbar-brand" %>
+    <ul class="navbar-nav ms-auto">
+      <%= content_tag(:li, link_to(:dishes, dishes_path, class: "nav-link"), class: "nav-item") %>
+      <%= content_tag(:li, link_to(:orders, orders_path, class: "nav-link"), class: "nav-item") %>
+    </ul>
+  </div>
+</nav>

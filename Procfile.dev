@@ -1,2 +1,2 @@
-web: bin/rails s
-css: bin/rails tailwindcss:watch
+web: bin/rails s -b 0.0.0.0
+css: bin/rails dartsass:watch

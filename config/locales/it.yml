@@ -29,17 +29,18 @@
 
 it:
   orders:
+    title: Ordini
+    new: Nuovo ordine
     created: Ordine correttamente creato.
     updated: Ordine correttamente aggiornato.
     destroyed: Ordine correttamente rimosso.
   dishes:
+    title: Piatti
+    new: Nuovo piatto
+    edit: Modifica piatto
     created: Piatto correttamente creato.
     updated: Piatto correttamente aggiornato.
     destroyed: Piatto correttamente rimosso.
-  shift:
-    created: Turno correttamente creato.
-    updated: Turno correttamente aggiornato.
-    destroyed: Turno correttamente rimosso.
   activerecord:
     attributes:
       dish/course:
@@ -49,3 +50,25 @@ it:
         side_dish: "Contorno"
         dessert: "Dessert"
         drink: "Bevanda"
+      order:
+       customer_name: Cliente
+      dish:
+        price: Prezzo
+        name: Nome
+    errors:
+      models:
+        order:
+          attributes:
+            customer_name:
+              blank: campo obbligatorio
+        dish:
+          attributes:
+            price:
+              blank: campo obbligatorio
+            name:
+              blank: campo obbligatorio
+  number:
+    currency:
+      format:
+        unit: '€'
+

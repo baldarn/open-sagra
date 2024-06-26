@@ -1,16 +1,18 @@
-<div id="<%= dom_id dish %>">
-  <div class="mb-5">
-    <div>Name</div>
-    <div><%= dish.name %></div>
+<div id="<%= dom_id dish %>" class="row">
+  <div class="col">
+    Name: <%= dish.name %>
   </div>
-
-  <div class="mb-5">
-    <div>Price</div>
-    <div><%= dish.price %></div>
+  <div class="col">
+    Price: <%= dish.price %>
   </div>
-
-  <div class="mb-5">
-    <div>Course</div>
-    <div><%= dish.course %></div>
+  <div class="col">
+    Course <%= dish.course %>
   </div>
+  <div class="col">
+    <%= link_to edit_dish_path(dish) do %>
+      <%= icon_svg("edit", class: "icon icon-2x") %>
+    <% end %>
+    <%= link_to dish, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'} do %>
+      <%= icon_svg("destroy", class: "icon icon-2x") %>
+    <% end %>  </div>
 </div>

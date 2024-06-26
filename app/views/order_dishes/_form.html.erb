@@ -1,0 +1,15 @@
+<%= simple_form_for [order, order_dish] do |f| %>
+  <%= f.input :dish do %>
+    <%= 
+      f.select(
+        :dish_id, 
+        Dish.all.group_by(&:course).transform_values { |dishes| dishes.map {|d| ["#{d.name} - #{number_to_currency(d.price.to_f / 100)}", d.id] } },
+        { prompt: 'Select dish' }, 
+        class: 'form-control' 
+      )
+    %>
+  <% end %>
+  <%= f.input :quantity, as: :integer, class: "input" %>
+  <%= f.input :notes, class: "input" %>
+  <%= f.button :submit, 'Add dish' %>
+<% end %>
